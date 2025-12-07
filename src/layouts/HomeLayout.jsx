@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import Slider from "../components/Slider";
 import Subscribe from "../components/Subscribe";
 import HeroFigure from "../components/homelayout/HeroFigure";
+import CustomerReview from "../components/homelayout/CustomerReview";
 
 const HomeLayout = () => {
   const { state } = useNavigation();
@@ -30,6 +31,9 @@ const HomeLayout = () => {
         </div>
         <div>
           <HeroFigure></HeroFigure>
+        </div>
+        <div>
+          <CustomerReview></CustomerReview>
         </div>
       </main>
 

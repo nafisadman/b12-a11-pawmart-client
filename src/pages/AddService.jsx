@@ -177,7 +177,7 @@ const AddService = () => {
           <div className="md:col-span-2 mt-2">
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition duration-300 shadow-md active:scale-[0.98]"
+              className="w-full btn btn-primary"
             >
               Post Listing
             </button>
