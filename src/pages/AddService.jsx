@@ -32,7 +32,7 @@ const AddService = () => {
 
     console.log(formData);
     axios
-      .post("http://localhost:3000/services", formData)
+      .post("https://b12-a11-pawmart-server.vercel.app/services", formData)
       .then((res) => {
         console.log(res);
         if (res.data.acknowledged) {

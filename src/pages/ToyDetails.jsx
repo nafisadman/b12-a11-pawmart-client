@@ -21,7 +21,7 @@ const ToyDetails = () => {
   const [petDetails, setPetDetails] = useState([]);
 
   useEffect(()=>{
-    fetch(`http://localhost:3000/services/${id}`)
+    fetch(`https://b12-a11-pawmart-server.vercel.app/services/${id}`)
     .then(res => res.json())
     .then(data => {
       setPetDetails(data);

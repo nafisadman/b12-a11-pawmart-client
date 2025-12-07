@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       {
         path: "/toys/",
         element: <ToyStore></ToyStore>,
-        loader: () => fetch("http://localhost:3000/services"),
+        loader: () => fetch("https://b12-a11-pawmart-server.vercel.app/services"),
         hydrateFallbackElement: <Loading></Loading>,
       },
     ],
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
         <ToyDetails></ToyDetails>
       </PrivateRoute>
     ),
-    loader: () => fetch("http://localhost:3000/services"),
+    loader: () => fetch("https://b12-a11-pawmart-server.vercel.app/services"),
     hydrateFallbackElement: <Loading></Loading>,
   },
   {

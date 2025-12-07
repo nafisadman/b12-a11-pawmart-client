@@ -8,7 +8,7 @@ const ToyStore = () => {
   const [category, setCategory] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/services?category=${category}`)
+    fetch(`https://b12-a11-pawmart-server.vercel.app/services?category=${category}`)
       .then((res) => res.json())
       .then((data) => setServices(data))
       .catch((err) => console.log(err));

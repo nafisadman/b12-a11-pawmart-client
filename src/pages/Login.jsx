@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import SocialLogin from "../components/homelayout/SocialLogin";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 
 const Login = () => {
   useEffect(() => {
@@ -23,6 +24,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
+        toast('Signed in successful');
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
@@ -35,6 +37,7 @@ const Login = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        toast('Signed in successful');
         navigate(location?.state || "/");
       })
       .catch((error) => {

@@ -22,7 +22,7 @@ const ToyDetailsCard = ({ key, toyDetails }) => {
 
   const { id } = useParams();
   useEffect(() => {
-    axios.get(`http://localhost:3000/services/${id}`).then((res) => {
+    axios.get(`https://b12-a11-pawmart-server.vercel.app/services/${id}`).then((res) => {
       setService(res.data);
     });
   }, [id]);
@@ -54,7 +54,7 @@ const ToyDetailsCard = ({ key, toyDetails }) => {
     };
 
     axios
-      .post("http://localhost:3000/orders", formData)
+      .post("https://b12-a11-pawmart-server.vercel.app/orders", formData)
       .then((res) => {
         console.log(res);
       })
