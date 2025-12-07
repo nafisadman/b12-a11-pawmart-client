@@ -19,6 +19,7 @@ import UpdateService from "../pages/UpdateService";
 import MyOrders from "../pages/MyOrders";
 import PetsAndSuppliers from "../pages/PetsAndSuppliers";
 import RecentListings from "../pages/RecentListings";
+import CategoryFilteredProducts from "../pages/CategoryFilteredProducts";
 
 const router = createBrowserRouter([
   {
@@ -32,10 +33,27 @@ const router = createBrowserRouter([
       {
         path: "/pets/",
         element: <RecentListings></RecentListings>,
-        loader: () => fetch("https://b12-a11-pawmart-server.vercel.app/recent-services"),
+        loader: () =>
+          fetch("https://b12-a11-pawmart-server.vercel.app/recent-services"),
         hydrateFallbackElement: <Loading></Loading>,
       },
+      {
+        path: "/category-filtered-product/:categoryName",
+        element: <CategoryFilteredProducts></CategoryFilteredProducts>,
+      },
+      {
+        path: "/pets/",
+        element: <RecentListings></RecentListings>,
+      },
     ],
+  },
+  {
+    path: "/category-filtered-product/:categoryName",
+    element: (
+      <PublicLayout>
+        <CategoryFilteredProducts />
+      </PublicLayout>
+    ),
   },
   {
     path: "/public",
@@ -44,10 +62,11 @@ const router = createBrowserRouter([
       {
         path: "pets-and-suppliers",
         element: <PetsAndSuppliers></PetsAndSuppliers>,
-        loader: () => fetch("https://b12-a11-pawmart-server.vercel.app/services"),
+        loader: () =>
+          fetch("https://b12-a11-pawmart-server.vercel.app/services"),
         hydrateFallbackElement: <Loading></Loading>,
-      }
-    ]
+      },
+    ],
   },
   {
     path: "/auth",
@@ -67,19 +86,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/auth/add-services",
-        element: <PrivateRoute><AddService></AddService></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddService></AddService>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/auth/my-services",
-        element: <PrivateRoute><MyServices></MyServices></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyServices></MyServices>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/auth/my-orders",
-        element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/auth/update-services/:id",
-        element: <PrivateRoute><UpdateService></UpdateService></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <UpdateService></UpdateService>
+          </PrivateRoute>
+        ),
       },
     ],
   },
