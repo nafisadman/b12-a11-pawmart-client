@@ -22,7 +22,6 @@ const Slider = () => {
                 Discover joy, companionship, and unconditional love. Browse our
                 shelter to find the perfect furry match waiting for you.
               </p>
-              <button className="btn btn-primary">Get Started</button>
             </div>
           </div>
         </div>
@@ -54,7 +53,6 @@ const Slider = () => {
                 Choose adoption and give a deserving animal a second chance. Be
                 the hero they’ve been waiting for.
               </p>
-              <button className="btn btn-primary">Get Started</button>
             </div>
           </div>
         </div>
@@ -86,7 +84,6 @@ const Slider = () => {
                 Every pet deserves a safe haven and a loving family. Open your
                 heart and your home to a loyal companion today.
               </p>
-              <button className="btn btn-primary">Get Started</button>
             </div>
           </div>
         </div>

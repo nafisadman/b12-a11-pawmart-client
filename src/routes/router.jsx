@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import HomeLayout from "../layouts/HomeLayout";
+import PublicLayout from "../layouts/PublicLayout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -16,6 +17,7 @@ import AddService from "../pages/AddService";
 import MyServices from "../pages/MyServices";
 import UpdateService from "../pages/UpdateService";
 import MyOrders from "../pages/MyOrders";
+import PetsAndSuppliers from "../pages/PetsAndSuppliers";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,18 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <Loading></Loading>,
       },
     ],
+  },
+  {
+    path: "/public",
+    element: <PublicLayout></PublicLayout>,
+    children: [
+      {
+        path: "pets-and-suppliers",
+        element: <PetsAndSuppliers></PetsAndSuppliers>,
+        loader: () => fetch("https://b12-a11-pawmart-server.vercel.app/services"),
+        hydrateFallbackElement: <Loading></Loading>,
+      }
+    ]
   },
   {
     path: "/auth",

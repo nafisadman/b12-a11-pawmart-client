@@ -31,10 +31,6 @@ const Navbar = () => {
   };
   return (
     <div>
-      {/* Old Navbar ------------------------------------------------------------------------------*/}
-
-      {/* New Navbar ------------------------------------------------------------------------------*/}
-
       <div class="navbar bg-base-100 shadow-xl">
         <div class="navbar-start">
           <div class="dropdown">
@@ -63,24 +59,34 @@ const Navbar = () => {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/profile">My Profile</NavLink>
+                <NavLink to="/public/pets-and-suppliers">
+                  Pets & Suppliers
+                </NavLink>
               </li>
-              <li>
-                <NavLink to="/about">About Us</NavLink>
-              </li>
-              <li>
-                <NavLink to="/auth/add-services">Add Services</NavLink>
-              </li>
-              <li>
-                <NavLink to="/auth/my-services">My Services</NavLink>
-              </li>
-              <li>
-                <NavLink to="/auth/my-orders">My Orders</NavLink>
-              </li>
+              {user && (
+                <>
+                  {/* <li>
+                    <NavLink to="/profile">My Profile</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/about">About Us</NavLink>
+                  </li> */}
+                  <li>
+                    <NavLink to="/auth/add-services">Add Listing</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/auth/my-services">My Listings</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/auth/my-orders">My Orders</NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
-          <a class="btn btn-ghost text-xl">
-            <span className="text-secondary">🐕 PawMart</span>
+          <a class="btn btn-ghost text-xl flex items-center justify-center">
+            <img className="h-8" src="../../public/paw.svg" alt="" />
+            <span className="text-primary font-bold">PawMart</span>
           </a>
         </div>
 
@@ -90,18 +96,23 @@ const Navbar = () => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/profile">My Profile</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">About Us</NavLink>
+              <NavLink to="/public/pets-and-suppliers">
+                Pets & Suppliers
+              </NavLink>
             </li>
             {user && (
               <>
-                <li>
-                  <NavLink to="/auth/add-services">Add Services</NavLink>
+                {/* <li>
+                  <NavLink to="/profile">My Profile</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/auth/my-services">My Services</NavLink>
+                  <NavLink to="/about">About Us</NavLink>
+                </li> */}
+                <li>
+                  <NavLink to="/auth/add-services">Add Listing</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/auth/my-services">My Listings</NavLink>
                 </li>
                 <li>
                   <NavLink to="/auth/my-orders">My Orders</NavLink>
@@ -168,9 +179,16 @@ const Navbar = () => {
                 <ToastContainer></ToastContainer>
               </>
             ) : (
-              <Link to="/auth/login" className="btn btn-primary">
-                Login
-              </Link>
+              <>
+                <div className="flex gap-2">
+                  <Link to="/auth/login" className="btn btn-secondary">
+                    Login
+                  </Link>
+                  <Link to="/auth/register" className="btn btn-primary">
+                    Register
+                  </Link>
+                </div>
+              </>
             )}
           </div>
         </div>
