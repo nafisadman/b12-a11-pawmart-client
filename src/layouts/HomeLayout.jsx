@@ -6,6 +6,7 @@ import Loading from "../pages/Loading";
 import Footer from "../components/Footer";
 import Slider from "../components/Slider";
 import Subscribe from "../components/Subscribe";
+import HeroFigure from "../components/homelayout/HeroFigure";
 
 const HomeLayout = () => {
   const { state } = useNavigation();
@@ -28,7 +29,7 @@ const HomeLayout = () => {
           </section>
         </div>
         <div>
-          <Subscribe></Subscribe>
+          <HeroFigure></HeroFigure>
         </div>
       </main>
 
