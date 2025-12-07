@@ -18,6 +18,7 @@ import MyServices from "../pages/MyServices";
 import UpdateService from "../pages/UpdateService";
 import MyOrders from "../pages/MyOrders";
 import PetsAndSuppliers from "../pages/PetsAndSuppliers";
+import RecentListings from "../pages/RecentListings";
 
 const router = createBrowserRouter([
   {
@@ -28,10 +29,16 @@ const router = createBrowserRouter([
         path: "",
         element: <Home></Home>,
       },
+      // {
+      //   path: "/toys/",
+      //   element: <ToyStore></ToyStore>,
+      //   loader: () => fetch("https://b12-a11-pawmart-server.vercel.app/services"),
+      //   hydrateFallbackElement: <Loading></Loading>,
+      // },
       {
-        path: "/toys/",
-        element: <ToyStore></ToyStore>,
-        loader: () => fetch("https://b12-a11-pawmart-server.vercel.app/services"),
+        path: "/pets/",
+        element: <RecentListings></RecentListings>,
+        loader: () => fetch("https://b12-a11-pawmart-server.vercel.app/recent-services"),
         hydrateFallbackElement: <Loading></Loading>,
       },
     ],
