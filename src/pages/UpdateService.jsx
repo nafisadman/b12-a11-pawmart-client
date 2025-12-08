@@ -5,8 +5,12 @@ import { useNavigate, useParams } from "react-router";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import useTitle from "../hooks/useTitle";
+import toast from "react-hot-toast";
 
 const UpdateService = () => {
+  useTitle("Update Listing");
+  
   const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [service, setService] = useState();
@@ -14,10 +18,12 @@ const UpdateService = () => {
   const navigation = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://b12-a11-pawmart-server.vercel.app/services/${id}`).then((res) => {
-      setService(res.data);
-      setCategory(res.data.category);
-    });
+    axios
+      .get(`https://b12-a11-pawmart-server.vercel.app/services/${id}`)
+      .then((res) => {
+        setService(res.data);
+        setCategory(res.data.category);
+      });
   }, [id]);
 
   const handleUpdate = (e) => {
@@ -42,24 +48,23 @@ const UpdateService = () => {
       email,
       imageUrl,
       description,
-      createdAt: service?.createdAt
+      createdAt: service?.createdAt,
     };
 
     console.log(formData);
 
-    axios.put(`https://b12-a11-pawmart-server.vercel.app/update/${id}`, formData)
-    .then(res=>{
+    axios
+      .put(`https://b12-a11-pawmart-server.vercel.app/update/${id}`, formData)
+      .then((res) => {
         console.log(res.data);
-        navigation('/auth/my-services')
-    })
-    .catch(err => 
-        console.log(err)
-    )
+        toast("Item Updated Successfully!");
+        navigation("/auth/my-services");
+      })
+      .catch((err) => console.log(err));
   };
   return (
-    <div>
-      Update Service
-      <div>
+    <div className="flex items-center justify-center">
+      <div className="w-1/2">
         <form
           onSubmit={handleUpdate}
           className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -75,7 +80,7 @@ const UpdateService = () => {
               name="name"
               required
               placeholder="e.g. Golden Retriever Puppy or Cat Food"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              className="w-full input"
             />
           </div>
 
@@ -91,10 +96,10 @@ const UpdateService = () => {
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white outline-none transition cursor-pointer"
             >
               <option disabled={true}>Pick an item</option>
-              <option value="Pets">Pets</option>
-              <option value="Food">Food</option>
-              <option value="Accessories">Accessories</option>
-              <option value="Care Products">Care Products</option>
+              <option value="Pets">🐶 Pets</option>
+              <option value="Food">🍖 Food</option>
+              <option value="Accessories">🧸 Accessories</option>
+              <option value="Care Products">💊 Care Products</option>
             </select>
           </div>
 

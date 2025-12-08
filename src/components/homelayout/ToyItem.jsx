@@ -5,21 +5,18 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { TbCategory2 } from "react-icons/tb";
+import toast from "react-hot-toast";
 
 const ToyItem = ({ toy }) => {
   useEffect(() => {
     // AOS.init();
   }, []);
-  const {
-    _id,
-    name,
-    imageUrl,
-    description,
-    price,
-    location,
-    category,
-  } = toy;
+  const { _id, name, imageUrl, description, price, location, category } = toy;
   console.log(toy);
+  
+  const handleViewMore = () => {
+    toast("Item is being viewed")
+  };
   return (
     <div>
       <div
@@ -39,15 +36,19 @@ const ToyItem = ({ toy }) => {
           </h2>
           <p>{description}</p>
           <div className="card-actions justify-between">
-            <div className="badge"><FaMapMarkedAlt />{location}</div>
+            <div className="badge">
+              <FaMapMarkedAlt />
+              {location}
+            </div>
             <div className="badge">
               <TbCategory2 /> {category}
             </div>
           </div>
           <div>
             <Link
-              to={`/toy-details/${ _id}`}
+              to={`/toy-details/${_id}`}
               className="btn btn-block bg-transparent hover:bg-secondary hover:text-white"
+              onClick={handleViewMore}
             >
               View More
             </Link>

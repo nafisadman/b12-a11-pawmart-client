@@ -1,8 +1,9 @@
 import React, { use, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import userIcon from "../assets/user.png";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
@@ -23,7 +24,7 @@ const Navbar = () => {
     // console.log("User trying to logout");
     logOut()
       .then(() => {
-        toast("Wow so easy!");
+        toast("Logged out Successfully!");
       })
       .catch((error) => {
         alert(error.message);
@@ -176,7 +177,7 @@ const Navbar = () => {
                 <button onClick={handleLogout} class="btn btn-primary">
                   Logout
                 </button>
-                <ToastContainer></ToastContainer>
+                {/* <ToastContainer></ToastContainer> */}
               </>
             ) : (
               <>

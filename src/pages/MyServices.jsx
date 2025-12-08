@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useTitle from "../hooks/useTitle";
+import toast from "react-hot-toast";
 
 const MyServices = () => {
   useTitle("My Listings");
@@ -46,6 +47,8 @@ const MyServices = () => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
+
+              toast("Item Deleted Successfully");
             }
           })
           .catch((err) => {

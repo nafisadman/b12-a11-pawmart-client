@@ -2,20 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { FaUser } from "react-icons/fa";
 import { FcRating } from "react-icons/fc";
-import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
+import toast from "react-hot-toast";
 
 const ToyDetailsCard = ({ key, toyDetails }) => {
-  const { _id, name, location, imageUrl, description, price, category } =
+  const location = useLocation();
+  const navigation = useNavigate();
+  const { _id, name, imageUrl, description, price, category } =
     toyDetails;
-
-  const notify = () => toast("Check your email for further instrucitons");
-  const notify1 = () => toast("Item bought Successfully!");
-  const handleBuyNow = () => {
-    notify1();
-  };
 
   const [service, setService] = useState();
   const { user } = useContext(AuthContext);
@@ -59,6 +55,8 @@ const ToyDetailsCard = ({ key, toyDetails }) => {
       .post("https://b12-a11-pawmart-server.vercel.app/orders", formData)
       .then((res) => {
         console.log(res);
+        document.getElementById("my_modal_3").close();
+        toast('Order Added Successfully');
       })
       .catch((err) => {
         console.log(err);
@@ -187,7 +185,6 @@ const ToyDetailsCard = ({ key, toyDetails }) => {
                 </div>
               </dialog>
             </div>
-            <ToastContainer />
           </div>
         </div>
       </div>

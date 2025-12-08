@@ -3,6 +3,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useTitle from "../hooks/useTitle";
+import toast from "react-hot-toast";
 
 const AddService = () => {
   useTitle("Add Listing");
@@ -43,6 +44,7 @@ const AddService = () => {
             icon: "success",
             draggable: true,
           });
+          toast("Item Added Successfully");
           form.reset();
         }
       })
@@ -83,7 +85,7 @@ const AddService = () => {
             </label>
             <select name="category" className="w-full input" defaultValue="">
               <option disabled value="">
-                Choose a Category
+                Pick an item
               </option>
               <option value="Pets">🐶 Pets</option>
               <option value="Food">🍖 Food</option>

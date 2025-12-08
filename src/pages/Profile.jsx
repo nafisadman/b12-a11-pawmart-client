@@ -1,7 +1,8 @@
 import React, { use, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../provider/AuthProvider";
-import { ToastContainer, toast } from "react-toastify";
+import toast from "react-hot-toast";
+// import { ToastContainer, toast } from "react-toastify";
 
 const Profile = () => {
   useEffect(() => {
@@ -9,7 +10,7 @@ const Profile = () => {
   }, []);
   const { user, createUser, setUser, updateUser } = use(AuthContext);
   const [nameError, setNameError] = useState("");
-  const notify = () => toast("Name Changed Successfully!");
+  // const notify = () => toast("Name Changed Successfully!");
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -17,10 +18,12 @@ const Profile = () => {
     const name = form.name.value;
     const photo = form.photo.value;
 
+    toast("Registration Successful!");
+
     updateUser({ displayName: name, photoURL: photo })
       .then(() => {
         setUser({ ...user, displayName: name, photoURL: photo });
-        notify();
+        // notify();
       })
       .catch((error) => {
         setUser(user);
@@ -79,7 +82,7 @@ const Profile = () => {
                 <button type="submit" className="btn btn-neutral mt-4">
                   Update
                 </button>
-                <ToastContainer />
+                {/* <ToastContainer /> */}
               </fieldset>
             </div>
           </form>

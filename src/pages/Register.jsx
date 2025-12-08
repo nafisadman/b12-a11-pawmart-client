@@ -5,6 +5,7 @@ import SocialLogin from "../components/homelayout/SocialLogin";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { Helmet } from "react-helmet";
 import useTitle from "../hooks/useTitle";
+import toast from "react-hot-toast";
 
 const Register = () => {
   useTitle("Register");
@@ -53,6 +54,7 @@ const Register = () => {
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
+            toast("Registration Successful!");
             navigate("/");
           })
           .catch((error) => {
