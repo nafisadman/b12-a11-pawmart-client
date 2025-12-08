@@ -2,18 +2,15 @@ import React, { use, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { Tooltip } from "react-tooltip";
-// import { ToastContainer, toast } from "react-toastify";
 import userIcon from "../assets/user.png";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
-  const [hover, setHover] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const handleThemeChange = () => {
     setIsDarkMode(!isDarkMode);
-
     if (isDarkMode) {
       document.querySelector("html").setAttribute("data-theme", "dark");
     } else {
@@ -22,7 +19,6 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    // console.log("User trying to logout");
     logOut()
       .then(() => {
         toast("Logged out Successfully!");
@@ -31,31 +27,33 @@ const Navbar = () => {
         alert(error.message);
       });
   };
+
   return (
-    <div>
-      <div class="navbar bg-base-100 shadow-xl">
-        <div class="navbar-start">
-          <div class="dropdown">
-            <label tabindex="0" class="btn btn-ghost lg:hidden">
+    <div className="h-20">
+      <div className="navbar bg-base-100 shadow-xl fixed top-0 z-50">
+        <div className="navbar-start">
+          {/* Mobile Dropdown Menu */}
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M4 6h16M4 12h8m-8 6h16"
                 />
               </svg>
             </label>
 
             <ul
-              tabindex="0"
-              class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
                 <NavLink to="/">Home</NavLink>
@@ -67,12 +65,6 @@ const Navbar = () => {
               </li>
               {user && (
                 <>
-                  {/* <li>
-                    <NavLink to="/profile">My Profile</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/about">About Us</NavLink>
-                  </li> */}
                   <li>
                     <NavLink to="/auth/add-services">Add Listing</NavLink>
                   </li>
@@ -82,18 +74,40 @@ const Navbar = () => {
                   <li>
                     <NavLink to="/auth/my-orders">My Orders</NavLink>
                   </li>
+                  {/* Mobile Only Logout */}
+                  <li className="mt-2 border-t pt-2 sm:hidden">
+                    <button onClick={handleLogout} className="text-error">
+                      Logout
+                    </button>
+                  </li>
                 </>
+              )}
+              {/* Mobile Only Login/Register */}
+              {!user && (
+                <div className="flex flex-col gap-2 mt-2 sm:hidden">
+                  <li>
+                    <NavLink to="/auth/login">Login</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/auth/register">Register</NavLink>
+                  </li>
+                </div>
               )}
             </ul>
           </div>
-          <a class="btn btn-ghost text-xl flex items-center justify-center">
-            <img className="h-8" src="../../public/paw.svg" alt="" />
-            <span className="text-primary font-bold">PawMart</span>
+
+          {/* Logo */}
+          <a className="btn btn-ghost text-xl flex items-center justify-center">
+            <img className="h-8" src="/paw.svg" alt="PawMart Logo" />
+            <span className="text-primary font-bold hidden xs:block">
+              PawMart
+            </span>
           </a>
         </div>
 
-        <div class="navbar-center hidden lg:flex">
-          <ul class="menu menu-horizontal px-1">
+        {/* Desktop Center Menu */}
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -104,12 +118,6 @@ const Navbar = () => {
             </li>
             {user && (
               <>
-                {/* <li>
-                  <NavLink to="/profile">My Profile</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/about">About Us</NavLink>
-                </li> */}
                 <li>
                   <NavLink to="/auth/add-services">Add Listing</NavLink>
                 </li>
@@ -124,7 +132,9 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div class="navbar-end flex gap-5 items-center">
+        {/* Navbar End (Actions) */}
+        <div className="navbar-end flex gap-2 sm:gap-4 items-center">
+          {/* Theme Controller */}
           <label className="flex cursor-pointer gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -136,6 +146,7 @@ const Navbar = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="hidden xs:block" 
             >
               <circle cx="12" cy="12" r="5" />
               <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
@@ -143,7 +154,6 @@ const Navbar = () => {
             <input
               onClick={handleThemeChange}
               type="checkbox"
-              value="synthwave"
               className="toggle theme-controller"
             />
             <svg
@@ -156,49 +166,54 @@ const Navbar = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="hidden xs:block"
             >
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           </label>
+
+          {/* Tooltip for non-logged in users (Desktop Only) */}
           {!user && (
-            <div className="border rounded-full h-10 flex items-center">
-              <a className="my-anchor-element">◕‿◕</a>
+            <div className="hidden sm:flex border rounded-full h-10 items-center">
+              <a className="my-anchor-element px-2">◕‿◕</a>
               <Tooltip anchorSelect=".my-anchor-element" place="left">
                 Login to see yourself here! 👉
               </Tooltip>
             </div>
           )}
-          <div className="login-btn flex gap-5 items-center">
+
+          <div className="login-btn flex gap-3 items-center">
+            {/* User Profile Pic */}
             {user && (
               <div
-                className="tooltip tooltip-bottom flex items-center hidden sm:block"
+                className="tooltip tooltip-bottom flex items-center"
                 data-tip={user.email}
               >
                 <img
-                  className="w-12 h-12 object-cover rounded-full"
+                  className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-full border border-primary"
                   src={`${user ? user.photoURL : userIcon}`}
                   alt="User Profile"
                 />
               </div>
             )}
+
+            {/* Action Buttons (Desktop Only - hidden on mobile) */}
             {user ? (
-              <>
-                <button onClick={handleLogout} class="btn btn-primary">
-                  Logout
-                </button>
-                {/* <ToastContainer></ToastContainer> */}
-              </>
+              <button
+                onClick={handleLogout}
+                className="btn btn-primary hidden sm:flex"
+              >
+                Logout
+              </button>
             ) : (
-              <>
-                <div className="flex gap-2">
-                  <Link to="/auth/login" className="btn btn-secondary">
-                    Login
-                  </Link>
-                  <Link to="/auth/register" className="btn btn-primary">
-                    Register
-                  </Link>
-                </div>
-              </>
+              <div className="hidden sm:flex gap-2">
+                <Link to="/auth/login" className="btn btn-secondary">
+                  Login
+                </Link>
+                <Link to="/auth/register" className="btn btn-primary">
+                  Register
+                </Link>
+              </div>
             )}
           </div>
         </div>

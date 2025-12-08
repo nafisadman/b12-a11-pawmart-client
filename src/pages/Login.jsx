@@ -71,7 +71,7 @@ const Login = () => {
               className="input w-full"
               placeholder="Password"
             />
-            <div>
+            {/* <div>
               <Link
                 to="/auth/forgot-password"
                 state={{ email: emailInput }}
@@ -79,7 +79,7 @@ const Login = () => {
               >
                 Forgot password?
               </Link>
-            </div>
+            </div> */}
             {error && <p className="text-red-400 text-xs">{error}</p>}
             <div className="flex flex-col mt-4">
               <button
