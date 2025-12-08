@@ -4,13 +4,11 @@ import { FaUser } from "react-icons/fa";
 import { FcRating } from "react-icons/fc";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
-import { useLocation, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import toast from "react-hot-toast";
 
 const ToyDetailsCard = ({ key, toyDetails }) => {
-  const location = useLocation();
-  const navigation = useNavigate();
-  const { _id, name, imageUrl, description, price, category } =
+  const { _id, name, location, imageUrl, description, price, category, email } =
     toyDetails;
 
   const [service, setService] = useState();
@@ -73,6 +71,8 @@ const ToyDetailsCard = ({ key, toyDetails }) => {
             <p className="font-bold text-secondary text-2xl">&#2547;{price}</p>
             <hr className="" />
             <p className="text-gray-500">{description}</p>
+            <p className="text-gray-500">Posted by {email}</p>
+            <p className="text-gray-500">Pick up at {location}</p>
             <p className="">
               <span className="font-bold">Category: </span>
               {category}
@@ -99,7 +99,7 @@ const ToyDetailsCard = ({ key, toyDetails }) => {
                     onSubmit={handleOrder}
                     className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
                   >
-                    <legend className="fieldset-legend">Order Details</legend>
+                    <legend className="fieldset-legend">Order Details: {_id}</legend>
 
                     <label className="label">Product Name</label>
                     <input
@@ -111,14 +111,15 @@ const ToyDetailsCard = ({ key, toyDetails }) => {
                       readOnly
                       disabled
                     />
-
                     <label className="label">Buyer Name</label>
                     <input
                       type="text"
                       className="input"
                       name="buyerName"
-                      placeholder="Insert Buyer Name"
+                      placeholder="Insert Product Name"
                       defaultValue={user?.displayName}
+                      readOnly
+                      disabled
                     />
 
                     <label className="label">Buyer Email</label>
