@@ -1,6 +1,11 @@
 import React from "react";
+import { Typewriter, useTypewriter } from "react-simple-typewriter";
 
 const Slider = () => {
+  const [text] = useTypewriter({
+    words: ["Best Friend", "Paw-tner in Crime", "Stress Reliever", "Cuddle Buddy!"],
+    loop: 3,
+  });
   return (
     <div className="carousel w-full">
       {/* slide 1 */}
@@ -16,7 +21,7 @@ const Slider = () => {
           <div className="hero-content text-neutral-content text-center">
             <div className="max-w-md">
               <h1 className="mb-5 text-5xl font-bold">
-                Meet Your New Best Friend
+                Meet Your New <br /> {text}
               </h1>
               <p className="mb-5">
                 Discover joy, companionship, and unconditional love. Browse our
