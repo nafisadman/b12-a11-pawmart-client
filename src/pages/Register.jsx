@@ -9,8 +9,9 @@ import toast from "react-hot-toast";
 
 const Register = () => {
   useTitle("Register");
-  
+
   const { createUser, setUser, updateUser, signInWithGoogle } = use(AuthContext);
+  
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState("");
@@ -65,19 +66,21 @@ const Register = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+
+
         alert(errorCode, errorMessage);
       });
   };
 
   const handleContinueWithGoogle = () => {
     signInWithGoogle()
-    .then(result => {
-      console.log(result.user);
-      navigate("/");
-    })
-    .catch(error => {
-      console.log(error);
-    })
+      .then(result => {
+        console.log(result.user);
+        navigate("/");
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   const handleTogglePasswordShow = (event) => {
@@ -101,13 +104,7 @@ const Register = () => {
           <fieldset className="fieldset">
             {/* name */}
             <label className="label">Your Name</label>
-            <input
-              type="text"
-              name="name"
-              className="input w-full"
-              placeholder="Enter your name"
-              required
-            />
+            <input type="text" name="name" className="input w-full" placeholder="Enter your name" required />
             {nameError && <p className="text-xs text-error">{nameError}</p>}
             {/* photo url */}
             <label className="label">Photo URL</label>
@@ -140,6 +137,7 @@ const Register = () => {
               {passwordError && (
                 <p className="text-xs text-error">{passwordError}</p>
               )}
+              {/* Google */}
               <SocialLogin handleContinueWithGoogle={handleContinueWithGoogle}></SocialLogin>
               <button
                 className="absolute top-2 right-2 btn btn-xs"

@@ -8,7 +8,7 @@ import useTitle from "../hooks/useTitle";
 
 const Login = () => {
   useTitle("Login");
-  
+
   const [error, setError] = useState("");
   const { signIn, signInWithGoogle } = use(AuthContext);
   const location = useLocation();
@@ -24,7 +24,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        toast('Signed in successful');
+        toast("Signed in successful");
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
@@ -37,7 +37,7 @@ const Login = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
-        toast('Signed in successful');
+        toast("Signed in successful");
         navigate(location?.state || "/");
       })
       .catch((error) => {

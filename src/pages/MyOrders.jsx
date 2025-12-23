@@ -1,15 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useTitle from "../hooks/useTitle";
 import { jsPDF } from "jspdf";
+import { AuthContext } from "../provider/AuthProvider";
 
 const MyOrders = () => {
   useTitle("My Orders");
+  const { user } = useContext(AuthContext);
   const [myOrders, setMyOrders] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`https://b12-a11-pawmart-server.vercel.app/orders`)
+      .get(`https://b12-a11-pawmart-server.vercel.app/orders?email=${user?.email}`)
       .then((res) => {
         setMyOrders(res.data);
       })
